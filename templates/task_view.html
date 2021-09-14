@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<body style="background-color:powderblue;"></body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+                    <h1 style="color:Brown;font-size:80px;text-align:center;font-family:courier;background-color:Darkcyan;"><b>-*-*-*-*-*-*-*-*-*-*-*-*-*<br>Vaccine Registration<br>-*-*-*-*-*-*-*-*-*-*-*-*-*</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4 style="color:MediumSeaGreen;font-size:30px;">Add Entries<br>......................</h4>
+        <form method="post" class="p-3 shadow">
+    {% csrf_token %}
+
+ <div class="form-group" >
+    <input type="text" name="name" class="form-control" placeholder="Name of the person">
+
+  </div>
+     <div class="form-group">
+    <input type="text" name="centre" class="form-control" placeholder="Vaccination centre">
+     </div>
+
+                <div class="form-group">
+    <input type="text" name="dose" class="form-control" placeholder="Dose of vaccine you want to take">
+     </div>
+              <div class="form-group">
+    <input type="date" name="date" class="form-control" placeholder="date to take vaccine">
+     </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+    </div>
+    <div class="col-md-6">
+        <h5 style="color:MediumSeaGreen;font-size:30px;">Applicants Registered<br>.......................................</h5>
+         {% for i in obj1 %}
+        <div class="card border-info mb-3" style="max-width: 18rem;">
+            <div class="card-header"><b>{{i.name}}</b></div>
+  <div class="card-body text-info">
+
+
+    <p class="card-text"><b>Dose:</b>{{i.dose}} dose<br><b>Date:</b>{{i.date}}<br><b>Centre:</b>{{i.centre}}.</p>
+      <a class="btn btn-danger" href="{% url 'delete' i.id %}" >Delete</a>
+      <a class="btn btn-success" href="{% url 'update' i.id %}">Update</a>
+  </div>
+
+</div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+
+
+
+{% endblock %}

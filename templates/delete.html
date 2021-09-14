@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <h3>Are u sure,delete this entry???/</h3>
+    <button type="submit">Confirm delete</button>
+</form>
+{% endblock %}
